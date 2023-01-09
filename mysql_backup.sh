@@ -4,6 +4,7 @@ cd /root/bak/
 top -b -d 60 -n 300 > top.log &
 pid=$!
 # mysqldump --defaults-extra-file=/root/bak/extra.conf --set-gtid-purged=OFF -A | bzip2 - > /root/bak/mydb_$(date +\%A).bzip2
+# mysqldump --defaults-extra-file=/root/bak/extra.conf -h DB_IP --debug-info --set-gtid-purged=OFF -B schema1 -B schema2 > /opt/temppath/mydb_$(date +\%A).sql 2>debug.log
 mysqldump --defaults-extra-file=/root/bak/extra.conf --debug-info --set-gtid-purged=OFF -A > /opt/temppath/mydb_$(date +\%A).sql 2>debug.log
 # try bzip2 because no enough disk space
 # but bzip2 is very slow
